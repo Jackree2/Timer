@@ -96,10 +96,10 @@
     
     setInterval(showTime, 50);
     
-    var timer = function() {
-    var nowDate = new Date();
-    var achiveDate = new Date(dateInput.value + 'T' +timeInput.value);
-    var result = (achiveDate - nowDate)+1000;
+    let timer = function() {
+    let nowDate = new Date();
+    let achiveDate = new Date(dateInput.value + 'T' + timeInput.value);
+    let result = (achiveDate - nowDate) + 1000;
       
     if (result < 0 || !timeInput.value) {
         
@@ -107,10 +107,10 @@
         
     } else {
       
-    var secondsTimer= Math.floor((result/1000)%60);
-    var minutesTimer = Math.floor((result/1000/60)%60);
-    var hoursTimer = Math.floor((result/1000/60/60)%24);
-    var daysTimer = Math.floor(result/1000/60/60/24);
+    let secondsTimer= Math.floor( (result / 1000) % 60 );
+    let minutesTimer = Math.floor( (result / 1000 / 60) % 60 );
+    let hoursTimer = Math.floor( (result / 1000 / 60 / 60 ) % 24 );
+    let daysTimer = Math.floor( result / 1000 / 60 / 60 / 24 );
       
     if (secondsTimer < 10) secondsTimer = '0' + secondsTimer;
     if (minutesTimer < 10) minutesTimer = '0' + minutesTimer;
