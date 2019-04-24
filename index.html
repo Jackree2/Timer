@@ -16,11 +16,12 @@
     }
     body {
       font-family: Orbitron, sans-serif;
+     
     }
     .clock {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-around;
       width: 100vw;
       height: 100vh;
       background-color: #1A1B1F;
@@ -30,20 +31,21 @@
       display: flex;
       justify-content: space-between;
       align-self: center;
-      font-size: 15vw;
+      font-size: 3vw;
       overflow: hidden;
       color: limegreen;
       text-shadow: 0 0 7px limegreen;
       
 
     }
-    .time:first-child {
-      margin-bottom: 5vh;
-    }
+    
 
     span {
       display: block;
-      width: 25vw;
+      width: 10vw;
+      text-align: center;
+    }
+    .timer_settings {
       text-align: center;
     }
     input {
@@ -52,16 +54,25 @@
       font-family: Orbitron, sans-serif;
       color: yellowgreen;
       border: none;
-      font-size: 6vw;
-      margin: 3vh auto 0 auto;
+      font-size: 3vw;
+      
       outline: none;
       clip-path: inset(0 17px 0 0);
+      
     }
     #timer {
       width: 90vw;
       font-size: 10vw;
       color: #b21212;
       text-shadow: 0 0 7px #b21212;
+    }
+    @media screen and (max-width: 900px) and (orientation: portrait) {
+      .time, input {
+        font-size: 7vw;
+      }
+      span {
+        width: 15vw;
+      }
     }
   </style>
 </head>
@@ -71,8 +82,11 @@
     <p class="time"><span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span></p>
     
     <p class="time"><span id="timer"></span></p>
-    <input type="date" value="2019-01-01">
-    <input type="time" value="00:00">
+    <div class="timer_settings">
+      <input type="time" value="00:00">
+      <input type="date" value="2019-01-01">
+    
+    </div>
   </div>
   
   <script>
