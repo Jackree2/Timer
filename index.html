@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang=ru>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Orbitron, sans-serif;
+    }
+    .clock {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #1A1B1F;
+      
+    }
+    .time {
+      display: flex;
+      justify-content: space-between;
+      align-self: center;
+      font-size: 15vw;
+      overflow: hidden;
+      color: limegreen;
+      text-shadow: 0 0 7px limegreen;
+      
+
+    }
+
+    span {
+      display: block;
+      width: 25vw;
+      text-align: center;
+    }
+    input {
+      width: 30vw;
+      background-color: #1A1B1F;
+      font-family: Orbitron, sans-serif;
+      color: limegreen;
+      border: none;
+      font-size: 3vw;
+      margin: 0 auto;
+      outline: none;
+    }
+    #timer {
+      width: 90vw;
+      font-size: 8vw;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="clock">
+    <p class="time"><span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span></p>
+    
+    <p class="time"><span id="timer"></span></p>
+    <input type="date" value="2019-04-25">
+    <input type="time" value="14:00">
+  </div>
+  
+  <script>
+    
+    let timeSection = document.querySelector('.time');
+    let hoursS = timeSection.querySelector('.hours');
+    let minutesS = timeSection.querySelector('.minutes');
+    let secondsS = timeSection.querySelector('.seconds');
+    let button = document.querySelector('input[type="button"]');
+    let dateInput = document.querySelector('input[type="date"]');
+    let timeInput = document.querySelector('input[type="time"]');
+    let timerS = document.querySelector('#timer');
+    
+    function showTime() {
+
+      let now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      let seconds = now.getSeconds();
+
+
+      hoursS.textContent = (hours < 10) ? '0' + hours : hours;
+      minutesS.textContent = (minutes < 10) ? '0' + minutes : minutes;
+      secondsS.textContent = (seconds < 10) ? '0' + seconds : seconds;
+    }
+    
+    setInterval(showTime, 50);
+    
+    var timer = function() {
+    var nowDate = new Date();
+    var achiveDate = new Date(dateInput.value + 'T' +timeInput.value); //Задаем дату, к которой будет осуществляться обратный отсчет
+    var result = (achiveDate - nowDate)+1000;
+      
+    if (result < 0 || !timeInput.value) {
+        
+        timerS.textContent = ' - : - - : - - : - - ';
+        
+    } else {
+      
+    var secondsTimer= Math.floor((result/1000)%60);
+    var minutesTimer = Math.floor((result/1000/60)%60);
+    var hoursTimer = Math.floor((result/1000/60/60)%24);
+    var daysTimer = Math.floor(result/1000/60/60/24);
+      
+    if (secondsTimer < 10) secondsTimer = '0' + secondsTimer;
+    if (minutesTimer < 10) minutesTimer = '0' + minutesTimer;
+    if (hoursTimer < 10) hoursTimer = '0' + hoursTimer;
+    
+    timerS.textContent = daysTimer + ':' + hoursTimer + ':' + minutesTimer + ':' + secondsTimer;
+    }
+      
+    setTimeout(timer, 50);
+}
+    timer();
+    
+  </script>
+</body>
+
+</html>
